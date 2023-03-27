@@ -68,6 +68,7 @@ const Add = (props) => {
             : <><label htmlFor='read'>Finished Reading</label>
             <input type='checkbox' name='read' onChange={handleRead}></input></>
             }
+            <input type="submit"></input>
         </form>
         </>
     )

@@ -6,6 +6,7 @@ const bookSchema = new mongoose.Schema({
     publisher: String,
     pages: Number,
     summary: String,
+    pages: Number,
     read: {type: Boolean, default: false}
 })
 

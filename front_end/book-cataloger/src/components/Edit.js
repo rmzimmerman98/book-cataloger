@@ -32,7 +32,7 @@ const Edit = (props) => {
 
     const handleEdit = (event) => {
         event.preventDefault()
-        axios.put('http://localhost:3000/books/${props.books._id}',
+        axios.put(`http://localhost:3000/books/${props.books._id}`,
         {
             title: newTitle,
             author: newAuthor,
@@ -42,7 +42,6 @@ const Edit = (props) => {
             read: haveRead
         }
         ).then(() => {
-            props.setEdit(false)
             props.getBooks()
         })
     }
@@ -66,7 +65,8 @@ const Edit = (props) => {
             </form>
             <button type='submit' form='editForm'>Update</button>
             <button onClick={() => {props.handleDelete(props.book)}}>Delete</button>
-            <button onClick={() => {props.toggleEdit()}}>Cancel</button>
         </div>
     )
 }
+
+export default Edit

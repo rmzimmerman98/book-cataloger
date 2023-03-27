@@ -9,6 +9,7 @@ const Edit = (props) => {
     const [newPages, setNewPages] = useState(props.book.pages)
     const [newSummary, setNewSummary] = useState(props.book.summary)
     const [haveRead, setHaveRead] = useState(props.book.read)
+    const [books, setBooks] = useState('')
 
     const handleTitleUpdate = (event) => {
         setNewTitle(event.target.value)
@@ -32,7 +33,7 @@ const Edit = (props) => {
 
     const handleEdit = (event) => {
         event.preventDefault()
-        axios.put('http://localhost:3000/books/${props.books._id}',
+        axios.put(`http://localhost:3000/books/${props.book._id}`,
         {
             title: newTitle,
             author: newAuthor,
@@ -42,8 +43,10 @@ const Edit = (props) => {
             read: haveRead
         }
         ).then(() => {
-            props.setEdit(false)
-            props.getBooks()
+            axios.get('http://localhost:3000/books').then((response) => {
+              setBooks(response.data)
+              props.getBooks()
+            })
         })
     }
 
@@ -63,10 +66,11 @@ const Edit = (props) => {
                 <>
                     <label htmlFor='read'>Finished Reading</label> <input type='checkbox' name='read' onChange={handleHaveRead}/>
                 </>}
+                <button type='submit' form='editForm'>Update</button>
             </form>
-            <button type='submit' form='editForm'>Update</button>
             <button onClick={() => {props.handleDelete(props.book)}}>Delete</button>
-            <button onClick={() => {props.toggleEdit()}}>Cancel</button>
         </div>
     )
 }
+
+export default Edit

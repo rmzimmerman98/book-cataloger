@@ -57,11 +57,11 @@ const Edit = (props) => {
                 <label>Summary:</label><br/><input type='text' name='summary' placeholder={props.book.summary} onChange={handleSummaryUpdate}/><br/>
                 {props.book.read ? 
                 <>
-                    <label htmlFor='read'>Finished Reading</label> <input type='checkbox' name='read' defaultChecked/>
+                    <label htmlFor='read'>Finished Reading</label> <input type='checkbox' name='read' onChange={handleHaveRead} defaultChecked/>
                 </>
                 : 
                 <>
-                    <label htmlFor='read'>Finished Reading</label> <input type='checkbox' name='read'/>
+                    <label htmlFor='read'>Finished Reading</label> <input type='checkbox' name='read' onChange={handleHaveRead}/>
                 </>}
             </form>
             <button type='submit' form='editForm'>Update</button>

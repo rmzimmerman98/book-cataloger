@@ -3,6 +3,14 @@ import {useState, useEffect} from 'react'
 import axios from 'axios'
 
 const App = () => {
+  //states
+  const [books, setBooks] = useState([])
+  //api request
+  const getBooks = () => {
+    axios.get('http://localhost:3000/books').then((respones) => {
+      setBooks(response.data)
+    })
+  }
   return (
     <>
       <h1>Testing</h1>
